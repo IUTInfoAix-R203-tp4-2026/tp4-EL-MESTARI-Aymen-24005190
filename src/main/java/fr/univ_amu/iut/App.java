@@ -89,11 +89,13 @@ public class App {
 
   private static void demoAnimal() {
     for (String type : new String[] {"chien", "chat", "vache", "canard"}) {
-      System.out.printf("  %s : %s%n", type, new Animal(type, type).faireDuBruit());
+      // Correction de l'exo 4 : on utilise la fabrique
+      System.out.printf("  %s : %s%n", type, Animal.creer(type, type).faireDuBruit());
     }
   }
 
   private static void demoEmail() {
+    // Retour à la version d'origine pour ne pas bloquer sur l'exo 5
     String mail =
         new ServiceNotification()
             .envoyer(
