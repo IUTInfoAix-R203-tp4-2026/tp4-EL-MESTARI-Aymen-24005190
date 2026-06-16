@@ -51,7 +51,6 @@ class AnimalTest {
   // Structure : activer après avoir remplacé le switch par du polymorphisme
   // =========================================================================
 
-  @Disabled("Activer après Replace Conditional with Polymorphism (Animal devient abstract)")
   @Test
   void la_classe_animal_est_abstract() {
     int m = Animal.class.getModifiers();
@@ -60,14 +59,12 @@ class AnimalTest {
         .isTrue();
   }
 
-  @Disabled("Activer après avoir créé la classe Chien extends Animal")
   @Test
   void la_classe_chien_herite_d_animal() throws Exception {
     Class<?> chien = Class.forName("fr.univ_amu.iut.exercice4.Chien");
     assertThat(Animal.class.isAssignableFrom(chien)).as("Chien doit hériter d'Animal").isTrue();
   }
 
-  @Disabled("Activer après avoir créé les classes Chat, Vache, Canard extends Animal")
   @Test
   void toutes_les_especes_ont_leur_propre_classe() throws Exception {
     for (String espece : new String[] {"Chat", "Vache", "Canard"}) {
@@ -76,7 +73,6 @@ class AnimalTest {
     }
   }
 
-  @Disabled("Activer après avoir retiré le champ type (String) d'Animal")
   @Test
   void le_champ_type_string_a_ete_supprime() {
     assertThat(Animal.class.getDeclaredFields())
@@ -84,10 +80,10 @@ class AnimalTest {
         .noneMatch(f -> f.getName().equals("type") && f.getType() == String.class);
   }
 
-  @Disabled("Activer après avoir créé une méthode statique de fabrique (Animal.creer(type, nom))")
   @Test
   void la_fabrique_cree_la_bonne_espece() throws Exception {
-    // Pour maintenir la compatibilité avec du code existant, on peut garder un point d'entrée
+    // Pour maintenir la compatibilité avec du code existant, on peut garder un
+    // point d'entrée
     // par nom de type : Animal.creer("chien", "Rex") retourne un Chien.
     java.lang.reflect.Method creer =
         Animal.class.getDeclaredMethod("creer", String.class, String.class);
@@ -97,11 +93,12 @@ class AnimalTest {
   }
 
   // ------------------------------------------------------------------------
-  //  Helper : isole la difference d'API entre smelly et refactored
+  // Helper : isole la difference d'API entre smelly et refactored
   // ------------------------------------------------------------------------
 
   private static Animal creerAnimal(String nom, String type) {
-    return new Animal(nom, type);
+    // Remplace le "new Animal" par l'appel à la fabrique
+    return Animal.creer(type, nom);
   }
 
   @SuppressWarnings("unused")
