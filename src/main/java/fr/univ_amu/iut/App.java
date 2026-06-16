@@ -5,6 +5,7 @@ import fr.univ_amu.iut.exercice1.Facture;
 import fr.univ_amu.iut.exercice2.CalculPrix;
 import fr.univ_amu.iut.exercice3.Menu;
 import fr.univ_amu.iut.exercice4.Animal;
+import fr.univ_amu.iut.exercice5.MessageEmail;
 import fr.univ_amu.iut.exercice5.ServiceNotification;
 import fr.univ_amu.iut.exercice6.GildedRose;
 import fr.univ_amu.iut.exercice6.Item;
@@ -89,23 +90,22 @@ public class App {
 
   private static void demoAnimal() {
     for (String type : new String[] {"chien", "chat", "vache", "canard"}) {
-      // Correction de l'exo 4 : on utilise la fabrique
       System.out.printf("  %s : %s%n", type, Animal.creer(type, type).faireDuBruit());
     }
   }
 
   private static void demoEmail() {
-    // Retour à la version d'origine pour ne pas bloquer sur l'exo 5
     String mail =
         new ServiceNotification()
             .envoyer(
-                "etudiant@univ-amu.fr",
-                "prof@univ-amu.fr",
-                "TP4 à rendre",
-                "Prière de rendre avant la fin de la séance",
-                true,
-                1,
-                new String[] {"consignes.pdf"});
+                new MessageEmail(
+                    "etudiant@univ-amu.fr",
+                    "prof@univ-amu.fr",
+                    "TP4 à rendre",
+                    "Prière de rendre avant la fin de la séance",
+                    true,
+                    1,
+                    new String[] {"consignes.pdf"}));
     System.out.println(mail);
   }
 
