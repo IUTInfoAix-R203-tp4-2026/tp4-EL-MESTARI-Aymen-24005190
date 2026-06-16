@@ -90,14 +90,12 @@ class MenuTest {
   // Tests de structure (à activer au fur et à mesure du refactoring)
   // =========================================================================
 
-  @Disabled("Activer après avoir créé la classe Historique")
   @Test
   void la_classe_historique_existe() throws Exception {
     Class<?> histo = Class.forName("fr.univ_amu.iut.exercice3.Historique");
     assertThat(histo).isNotNull();
   }
 
-  @Disabled("Activer après avoir doté Historique des trois méthodes attendues")
   @Test
   void la_classe_historique_a_les_trois_methodes_attendues() throws Exception {
     Class<?> histo = Class.forName("fr.univ_amu.iut.exercice3.Historique");
@@ -108,7 +106,6 @@ class MenuTest {
     assertThat(histo.getDeclaredMethod("afficher")).as("Historique.afficher()").isNotNull();
   }
 
-  @Disabled("Activer après avoir remplacé le champ historique de Menu par un Historique")
   @Test
   void le_menu_utilise_un_champ_de_type_historique() throws Exception {
     Class<?> histo = Class.forName("fr.univ_amu.iut.exercice3.Historique");
