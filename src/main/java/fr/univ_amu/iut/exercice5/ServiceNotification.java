@@ -2,19 +2,33 @@ package fr.univ_amu.iut.exercice5;
 
 /// Exercice 5 - Introduce Parameter Object.
 ///
-/// La méthode [#envoyer] prend **7 paramètres**. C'est le smell **Long Parameter List** dans
-/// toute sa gloire :
+/// La méthode [#envoyer] prend **7 paramètres**. C'est le smell **Long Parameter
+/// List** dans toute sa gloire :
 ///
-/// - L'appel est illisible : `envoyer("a@b.c", "c@d.e", "Sujet", "Corps", true, 3, null)` - quel
-///   booléen ? quel numéro ?
-/// - Les paramètres sont **couplés** : destinataire, expéditeur et corps vont toujours ensemble ;
-///   les dissocier n'a aucun sens métier
-/// - Ajouter un 8e paramètre (ex: pièce jointe) impose de modifier **tous les appelants**
+/// - L'appel est illisible : `envoyer("a@b.c", "c@d.e", "Sujet", "Corps", true,
+///   3, null)` - quel booléen ? quel numéro ?
+/// - Les paramètres sont **couplés** : destinataire, expéditeur et corps vont
+///   toujours ensemble ; les dissocier n'a aucun sens métier
+/// - Ajouter un 8e paramètre (ex: pièce jointe) impose de modifier **tous les
+///   appelants**
 ///
-/// Refactoring attendu : **Introduce Parameter Object**. Créer une classe `MessageEmail` (un
-/// `record` est parfait) qui regroupe les 7 paramètres. La méthode devient `envoyer(MessageEmail)`
-/// : un seul paramètre, un contrat explicite, et ajouter un champ ne casse plus les appelants.
+/// Refactoring attendu : **Introduce Parameter Object**. Créer une classe
+/// `MessageEmail` (un `record` est parfait) qui regroupe les 7 paramètres. La
+/// méthode devient `envoyer(MessageEmail)` : un seul paramètre, un contrat
+/// explicite, et ajouter un champ ne casse plus les appelants.
 public class ServiceNotification {
+
+  /// Nouvelle méthode utilisant le Parameter Object
+  public String envoyer(MessageEmail message) {
+    return envoyer(
+        message.destinataire(),
+        message.expediteur(),
+        message.sujet(),
+        message.corps(),
+        message.important(),
+        message.priorite(),
+        message.piecesJointes());
+  }
 
   /// Formate et envoie (simulation) un email.
   ///

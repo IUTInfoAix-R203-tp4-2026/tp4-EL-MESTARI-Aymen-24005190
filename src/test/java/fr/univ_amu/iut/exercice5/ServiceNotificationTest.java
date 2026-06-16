@@ -2,7 +2,6 @@ package fr.univ_amu.iut.exercice5;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class ServiceNotificationTest {
@@ -49,14 +48,12 @@ class ServiceNotificationTest {
   // Structure : Parameter Object MessageEmail
   // =========================================================================
 
-  @Disabled("Activer après avoir créé MessageEmail (record)")
   @Test
   void la_classe_message_email_est_un_record() throws Exception {
     Class<?> cls = Class.forName("fr.univ_amu.iut.exercice5.MessageEmail");
     assertThat(cls.isRecord()).as("MessageEmail doit être un record").isTrue();
   }
 
-  @Disabled("Activer après avoir créé MessageEmail avec ses 7 composants")
   @Test
   void la_classe_message_email_a_7_composants() throws Exception {
     Class<?> cls = Class.forName("fr.univ_amu.iut.exercice5.MessageEmail");
@@ -67,7 +64,6 @@ class ServiceNotificationTest {
         .hasSize(7);
   }
 
-  @Disabled("Activer après avoir créé la nouvelle méthode envoyer(MessageEmail)")
   @Test
   void la_nouvelle_signature_utilise_message_email() throws Exception {
     Class<?> messageClass = Class.forName("fr.univ_amu.iut.exercice5.MessageEmail");
@@ -76,7 +72,6 @@ class ServiceNotificationTest {
     assertThat(envoyer.getParameterCount()).isEqualTo(1);
   }
 
-  @Disabled("Activer après avoir creé la nouvelle methode : elle doit produire le même format")
   @Test
   void la_nouvelle_methode_produit_le_meme_format() throws Exception {
     Class<?> messageClass = Class.forName("fr.univ_amu.iut.exercice5.MessageEmail");
@@ -98,7 +93,4 @@ class ServiceNotificationTest {
         service.envoyer("a@b.c", "c@d.e", "Test", "Contenu", true, 2, new String[] {"doc.pdf"});
     assertThat(mailNouveau).isEqualTo(mailAncien);
   }
-
-  @SuppressWarnings("unused")
-  private static final Class<?> DISABLED_USAGE_MARKER = Disabled.class;
 }
