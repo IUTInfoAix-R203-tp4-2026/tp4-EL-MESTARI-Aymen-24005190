@@ -72,7 +72,6 @@ class FactureTest {
   // Tests de structure (à activer au fur et à mesure du refactoring)
   // =========================================================================
 
-  @Disabled("Activer après avoir extrait la méthode sommeHT")
   @Test
   void la_methode_somme_ht_a_ete_extraite() throws Exception {
     Method m = Facture.class.getDeclaredMethod("sommeHT", Article[].class);
@@ -81,7 +80,6 @@ class FactureTest {
     assertThat((double) m.invoke(new Facture(), (Object) articles)).isEqualTo(35.0, within(0.001));
   }
 
-  @Disabled("Activer après avoir extrait la méthode appliquerTVA")
   @Test
   void la_methode_appliquer_tva_a_ete_extraite() throws Exception {
     Method m = Facture.class.getDeclaredMethod("appliquerTVA", double.class);
@@ -89,7 +87,6 @@ class FactureTest {
     assertThat((double) m.invoke(new Facture(), 50.0)).isEqualTo(60.0, within(0.001));
   }
 
-  @Disabled("Activer après avoir extrait la méthode appliquerRemise")
   @Test
   void la_methode_appliquer_remise_a_ete_extraite() throws Exception {
     Method m = Facture.class.getDeclaredMethod("appliquerRemise", double.class);
@@ -100,12 +97,14 @@ class FactureTest {
         .isEqualTo(50.0, within(0.001)); // pas de remise
   }
 
-  @Disabled("Activer après avoir raccourci calculerTotal")
   @Test
   void la_methode_calculer_total_est_courte_apres_extraction() throws Exception {
-    // Après Extract Method, calculerTotal est court (par exemple 3 lignes de composition).
-    // On ne peut pas compter les lignes directement via réflexion, mais on peut vérifier
-    // que les 3 méthodes extraites existent et sont bien utilisées (tests précédents).
+    // Après Extract Method, calculerTotal est court (par exemple 3 lignes de
+    // composition).
+    // On ne peut pas compter les lignes directement via réflexion, mais on peut
+    // vérifier
+    // que les 3 méthodes extraites existent et sont bien utilisées (tests
+    // précédents).
     // Ici on vérifie juste que calculerTotal reste accessible.
     Method m = Facture.class.getDeclaredMethod("calculerTotal", Article[].class);
     assertThat(m.getModifiers() & java.lang.reflect.Modifier.PUBLIC).isNotZero();
