@@ -80,38 +80,33 @@ class CalculPrixTest {
   // Tests de structure (à activer au fur et à mesure du refactoring)
   // =========================================================================
 
-  @Disabled("Activer après avoir extrait TAUX_TVA")
   @Test
   void la_constante_taux_tva_a_ete_extraite() throws Exception {
     assertConstanteDouble("TAUX_TVA", 1.20);
   }
 
-  @Disabled("Activer après avoir extrait SEUIL_REMISE_FIDELITE")
   @Test
   void la_constante_seuil_remise_a_ete_extraite() throws Exception {
     assertConstanteDouble("SEUIL_REMISE_FIDELITE", 500.0);
   }
 
-  @Disabled("Activer après avoir extrait TAUX_REMISE_FIDELITE")
   @Test
   void la_constante_taux_remise_a_ete_extraite() throws Exception {
     assertConstanteDouble("TAUX_REMISE_FIDELITE", 0.95);
   }
 
-  @Disabled("Activer après avoir extrait SEUIL_FRAIS_PORT_OFFERT")
   @Test
   void la_constante_seuil_frais_port_a_ete_extraite() throws Exception {
     assertConstanteDouble("SEUIL_FRAIS_PORT_OFFERT", 50.0);
   }
 
-  @Disabled("Activer après avoir extrait MONTANT_FRAIS_PORT")
   @Test
   void la_constante_montant_frais_port_a_ete_extraite() throws Exception {
     assertConstanteDouble("MONTANT_FRAIS_PORT", 8.0);
   }
 
   // ------------------------------------------------------------------------
-  //  Helpers
+  // Helpers
   // ------------------------------------------------------------------------
 
   private static void assertConstanteDouble(String nom, double valeurAttendue) throws Exception {
